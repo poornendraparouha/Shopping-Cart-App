@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../styles/Total.module.css";
-import { useContext } from "react";
-import { itemContext } from "../itemContext";
+import { useValue } from "../itemContext";
 
 function Navbar() {
-  const value = useContext(itemContext);
+  const value = useValue();
+
 
   return (
     <div className={styles.container}>

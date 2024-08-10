@@ -7,7 +7,6 @@ import CustomItemContext from './itemContext';
 function App() {
 
   return (
-    // <itemContext.Provider value={{item, setItem, total, setTotal}}>
     <CustomItemContext>
           <div className='App'>
           <h2>Shopping Cart</h2>
