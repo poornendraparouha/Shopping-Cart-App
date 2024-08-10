@@ -24,8 +24,13 @@ function CostomItemContext({children}){
         setItem(item - 1);
       };
 
+      const handleReset = (price) => {
+        setTotal(0);
+        setItem(0);
+      }
+
     return(
-        <itemContext.Provider value={{item, total, handleAdd, handleRemove}}>
+        <itemContext.Provider value={{item, total, handleAdd, handleRemove, handleReset}}>
             {children}
 
         </itemContext.Provider>
