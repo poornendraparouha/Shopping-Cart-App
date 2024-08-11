@@ -14,7 +14,7 @@ function ItemCard({ id, name, price }) {
         <button className={styles.itemButton} onClick={() => handleAdd({ id, name, price })}>
           Add
         </button>
-        <button className={styles.itemButton} onClick={() => handleRemove({ id, name, price })}>
+        <button className={styles.itemButton} onClick={() => handleRemove(id)}>
           Remove
         </button>
       </div>

@@ -3,12 +3,12 @@ import styles from "../styles/cartModal.module.css";
 import { useValue } from "../itemContext";
 
 
-function CartModal({toggle}){
-    const {cart, total, handleReset} = useValue();
+function CartModal(){
+    const {cart, total, handleReset, toggleCart} = useValue();
 
     return(
         <div className={styles.cartModal}>
-            <div className={styles.closeButton} onClick={toggle}>
+            <div className={styles.closeButton} onClick={toggleCart}>
                 Close
             </div>
             <div className={styles.clearButton} onClick={handleReset}>

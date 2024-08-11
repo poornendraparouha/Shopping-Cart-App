@@ -16,30 +16,38 @@ function CostomItemContext({children}){
 
 
     const handleAdd = (prod) => {
-      const index = cart.findIndex((item)=> item.id === prod.id)
-
+      const index = cart.findIndex((item)=> item.id === prod.id);
       if( index === -1){
         setCart([...cart, {...prod, qty: 1}]);
+        console.log(cart);
         setTotal(total + prod.price);
       }
       else{
         cart[index].qty++ ;
         setCart(cart);
-        setTotal(total + cart[index].price);
-        setItem(item + 1);
-        console.log(cart);
+        console.log(cart)
+        setTotal(total + cart[index].price); 
       }
-
-        // setTotal(total + price)
-        // setItem(item + 1)
+      setItem(item + 1);
       };
 
-      const handleRemove = (price) => {
-        if (total <= 0){
-          return
+      const handleRemove = (id) => {
+        const index = cart.findIndex((item)=> item.id === id);
+        if( index !== -1){
+          cart[index].qty-- ;
+          setItem(item - 1);
+          setTotal(total - cart[index].price);
+        if(cart[index].qty === 0){
+          cart.splice(index,1);
         }
-        setTotal((prevState)=> prevState - price);
-        setItem(item - 1);
+        }
+        setCart(cart);
+        
+        // if (total <= 0){
+        //   return
+        // }
+        // setTotal((prevState)=> prevState - price);
+        // setItem(item - 1);
       };
 
       const handleReset = (price) => {
@@ -53,7 +61,7 @@ function CostomItemContext({children}){
 
     return(
         <itemContext.Provider value={{item, total, cart, handleAdd, handleRemove, handleReset, toggleCart}}>
-            {showCart && < CartModal toggle={toggleCart} />}
+            {showCart && < CartModal />}
             {children}
 
         </itemContext.Provider>
