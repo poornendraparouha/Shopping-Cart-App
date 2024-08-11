@@ -4,7 +4,7 @@ import { useValue } from "../itemContext";
 
 
 function CartModal({toggle}){
-    const {total, handleReset} = useValue();
+    const {cart, total, handleReset} = useValue();
 
     return(
         <div className={styles.cartModal}>
@@ -15,11 +15,21 @@ function CartModal({toggle}){
                 Clear
             </div>
             <div className={styles.itemContainer}>
+            {cart.map((item) =>{
+                return(
+                    <div className={styles.cartCard} key={item.id}>
+                    <h1>{item.name}</h1>
+                    <h3>x{item.qty}</h3>
+                    <h3>x{item.price * item.qty}</h3>
+                    </div>
+
+                )
+            })}
 
             </div>
             <div className={styles.total}>
                 <div className={styles.totalText}>Total</div>
-                <div className={styles.totalPrice}>Price {total}</div>
+                <div className={styles.totalPrice}> {total}</div>
             </div>
         </div>
     );

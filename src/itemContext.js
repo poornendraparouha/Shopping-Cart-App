@@ -20,10 +20,16 @@ function CostomItemContext({children}){
 
       if( index === -1){
         setCart([...cart, {...prod, qty: 1}]);
-        console.log(cart)
         setTotal(total + prod.price);
       }
-      setItem(total + prod.qty + 1)
+      else{
+        cart[index].qty++ ;
+        setCart(cart);
+        setTotal(total + cart[index].price);
+        setItem(item + 1);
+        console.log(cart);
+      }
+
         // setTotal(total + price)
         // setItem(item + 1)
       };
@@ -37,6 +43,7 @@ function CostomItemContext({children}){
       };
 
       const handleReset = (price) => {
+        setCart([]);
         setTotal(0);
         setItem(0);
       }
@@ -45,7 +52,7 @@ function CostomItemContext({children}){
       }
 
     return(
-        <itemContext.Provider value={{item, total, handleAdd, handleRemove, handleReset, toggleCart}}>
+        <itemContext.Provider value={{item, total, cart, handleAdd, handleRemove, handleReset, toggleCart}}>
             {showCart && < CartModal toggle={toggleCart} />}
             {children}
 
